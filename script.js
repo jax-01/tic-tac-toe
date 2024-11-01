@@ -99,4 +99,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
   };
+
+  const printNewRound = () => {
+    gameBoard.printBoard();
+    console.log(`${getActivePlayer().name}'s turn.`);
+  };
 }
