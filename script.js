@@ -18,4 +18,8 @@ function Gameboard() {
       board[i].push("cell");
     }
   }
+
+  // This will be the method of getting the entire board that our
+  // UI will eventually need to render
+  const getBoard = () => board;
 }
