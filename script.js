@@ -3,6 +3,7 @@
 ** Each square holds a Cell (defined later)
 ** and we expose a dropToken method to be able to add Cells to the squares
 */
+
 function Gameboard() {
   const ROWS = 3;
   const COLUMNS = 3;
@@ -23,14 +24,4 @@ function Gameboard() {
   const getBoard = () => board;
 
   return { getBoard };
-}
-
-/*
-** A Cell represents one "square" on the board and can have one value:
-** 0: no token is in the square,
-** 1: Player 1's token,
-** 2: Player 2's token
-*/
-function Cell() {
-
 }
