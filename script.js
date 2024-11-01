@@ -117,4 +117,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     // Print the board and the player
     printNewRound();
   };
+
+  // Initial play game message
+  printNewRound();
 }
