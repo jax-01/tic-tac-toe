@@ -23,7 +23,16 @@ function Gameboard() {
   // UI will eventually need to render
   const getBoard = () => board;
 
-  return { getBoard };
+  // This method will be used to print our board to the console
+  // It is helpful to see what the board looks like after each turn as we play,
+  // but we won't need it after we build our UI
+  const printBoard = () => {
+    console.log(
+      board.map((row) => row.map((cell) => cell.getCellValue()))
+    );
+  };
+
+  return { getBoard, printBoard };
 }
 
 /*
