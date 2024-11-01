@@ -104,4 +104,12 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     gameBoard.printBoard();
     console.log(`${getActivePlayer().name}'s turn.`);
   };
+
+  const playRound = (row, column) => {
+    // Log who is playing
+    console.log(`${getActivePlayer().name} is placing a token`);
+
+    // Place a token
+    gameBoard.placeToken(row, column, getActivePlayer().token);
+  };
 }
