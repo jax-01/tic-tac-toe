@@ -43,7 +43,11 @@ function Gameboard() {
     );
   };
 
-  return { getBoard, placeToken, printBoard };
+  return {
+    getBoard,
+    placeToken,
+    printBoard
+  };
 }
 
 /*
@@ -63,5 +67,8 @@ function Cell() {
   // Retrieve the current value of this cell through closure
   const getCellValue = () => cellValue;
 
-  return { addToken, getCellValue };
+  return {
+    addToken, 
+    getCellValue
+  };
 }
