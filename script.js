@@ -80,4 +80,15 @@ function Cell() {
 */
 function GameController(playerOneName = "Player One", playerTwoName = "Player Two") {
   const gameBoard = Gameboard();
+
+  const players = [
+    {
+      name: playerOneName,
+      token: "X"
+    },
+    {
+      name: playerTwoName,
+      token: "O"  
+    }
+  ];
 }
