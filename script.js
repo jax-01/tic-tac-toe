@@ -120,4 +120,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
   // Initial play game message
   printNewRound();
+
+  return {
+    playRound,
+    getActivePlayer
+  };
 }
