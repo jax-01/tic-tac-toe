@@ -15,7 +15,7 @@ function Gameboard() {
   for (let i = 0;  i < ROWS; i++) {
     board[i] = [];
     for (let j = 0; j < COLUMNS; j++) {
-      board[i].push("cell");
+      board[i].push(Cell());
     }
   }
 
@@ -23,7 +23,31 @@ function Gameboard() {
   // UI will eventually need to render
   const getBoard = () => board;
 
-  return { getBoard };
+  // In order to place a token, we need to check if
+  // the selected cell has no token yet,
+  // then change the cell's value to the player's token
+  const placeToken = (row, column, playerToken) => {
+    if (board[row][column].getCellValue() !== 0) {
+      console.log("Cell already filled");
+      return;
+    }
+    board[row][column].addToken(playerToken);
+  };
+
+  // This method will be used to print our board to the console
+  // It is helpful to see what the board looks like after each turn as we play,
+  // but we won't need it after we build our UI
+  const printBoard = () => {
+    console.log(
+      board.map((row) => row.map((cell) => cell.getCellValue()))
+    );
+  };
+
+  return {
+    getBoard,
+    placeToken,
+    printBoard
+  };
 }
 
 /*
@@ -43,5 +67,8 @@ function Cell() {
   // Retrieve the current value of this cell through closure
   const getCellValue = () => cellValue;
 
-  return { addToken, getCellValue };
+  return {
+    addToken, 
+    getCellValue
+  };
 }
