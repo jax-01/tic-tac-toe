@@ -28,10 +28,11 @@ function Gameboard() {
   // then change the cell's value to the player's token
   const placeToken = (row, column, playerToken) => {
     if (board[row][column].getCellValue() !== 0) {
-      console.log("Cell already filled");
-      return;
+      console.log("Cell already filled. Place your token again.");
+      return false;
     }
     board[row][column].addToken(playerToken);
+    return true;
   };
 
   // This method will be used to print our board to the console
@@ -109,8 +110,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     // Log who is playing
     console.log(`${getActivePlayer().name} is placing a token`);
 
-    // Place a token
-    gameBoard.placeToken(row, column, getActivePlayer().token);
+    const vacantCell = gameBoard.placeToken(row, column, getActivePlayer().token);
+    if (!vacantCell) return;
 
     // After a player's turn, switch the players
     switchPlayerTurn();
