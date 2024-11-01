@@ -126,3 +126,5 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     getActivePlayer
   };
 }
+
+const game = GameController();
