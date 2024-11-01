@@ -33,5 +33,12 @@ function Gameboard() {
 ** 2: Player 2's token is in the square
 */
 function Cell() {
-  
+  let cellValue = 0;
+
+  // Accept a player's token to change the value of the cell
+  const addToken = (playerToken) => {
+    cellValue = playerToken;
+  };
+
+  return { addToken };
 }
