@@ -111,5 +111,10 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     // Place a token
     gameBoard.placeToken(row, column, getActivePlayer().token);
+
+    // After a player's turn, switch the players
+    switchPlayerTurn();
+    // Print the board and the player
+    printNewRound();
   };
 }
