@@ -40,5 +40,8 @@ function Cell() {
     cellValue = playerToken;
   };
 
-  return { addToken };
+  // Retrieve the current value of this cell through closure
+  const getCellValue = () => cellValue;
+
+  return { addToken, getCellValue };
 }
