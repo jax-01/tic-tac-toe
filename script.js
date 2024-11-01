@@ -95,4 +95,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   let activePlayer = players[0];
 
   const getActivePlayer = () => activePlayer;
+
+  const switchPlayerTurn = () => {
+    activePlayer = activePlayer === players[0] ? players[1] : players[0];
+  };
 }
