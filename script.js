@@ -91,4 +91,6 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       token: "O"  
     }
   ];
+
+  let activePlayer = players[0];
 }
