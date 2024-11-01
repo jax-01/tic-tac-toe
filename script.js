@@ -25,3 +25,13 @@ function Gameboard() {
 
   return { getBoard };
 }
+
+/*
+** A Cell represents one square on the board and can have a value of
+** 0: No token is in the square,
+** 1: Player 1's token is in the square,
+** 2: Player 2's token is in the square
+*/
+function Cell() {
+  
+}
