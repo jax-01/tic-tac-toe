@@ -79,5 +79,5 @@ function Cell() {
 ** as well as whether anybody has won the game
 */
 function GameController(playerOneName = "Player One", playerTwoName = "Player Two") {
-
+  const gameBoard = Gameboard();
 }
