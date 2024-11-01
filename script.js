@@ -15,7 +15,7 @@ function Gameboard() {
   for (let i = 0;  i < ROWS; i++) {
     board[i] = [];
     for (let j = 0; j < COLUMNS; j++) {
-      board[i].push("cell");
+      board[i].push(Cell());
     }
   }
 
@@ -31,7 +31,6 @@ function Gameboard() {
       console.log("Cell already filled");
       return;
     }
-
     board[row][column].addToken(playerToken);
   };
 
