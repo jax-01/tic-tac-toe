@@ -141,5 +141,9 @@ function ScreenController() {
   const updateScreen = () => {
     // clear the board
     boardDiv.textContent = "";
+
+    // get the newest version of the board and player turn
+    const board = game.getBoard();
+    const activePlayer = game.getActivePlayer();
   };
 }
