@@ -162,4 +162,16 @@ function ScreenController() {
       });
     });
   };
+
+  // add event listener for the board (cells)
+  boardDiv.addEventListener("click", (e) => {
+    const selectedRow = e.target.dataset.rowIndex;
+    const selectedColumn = e.target.dataset.cellIndex;
+
+    // Make sure buttons are clicked not gaps or spaces
+    if (!selectedRow || !selectedColumn) return;
+
+    game.playRound(selectedRow, selectedColumn);
+    updateScreen();
+  });
 }
