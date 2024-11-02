@@ -124,7 +124,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
   return {
     playRound,
-    getActivePlayer
+    getActivePlayer,
+    getBoard: gameBoard.getBoard
   };
 }
 
@@ -165,8 +166,8 @@ function ScreenController() {
 
   // add event listener for the board (cells)
   boardDiv.addEventListener("click", (e) => {
-    const selectedRow = e.target.dataset.rowIndex;
-    const selectedColumn = e.target.dataset.cellIndex;
+    const selectedRow = e.target.dataset.row;
+    const selectedColumn = e.target.dataset.column;
 
     // Make sure buttons are clicked not gaps or spaces
     if (!selectedRow || !selectedColumn) return;
