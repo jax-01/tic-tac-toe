@@ -134,7 +134,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 ** updating the visual representation of the game,
 ** i.e. updating the screen each time a player takes their turn
 */
-function ScreenController() {
+(function ScreenController() {
   const game = GameController();
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".board");
@@ -178,4 +178,4 @@ function ScreenController() {
 
   // Initial render of the screen
   updateScreen();
-}
+}())
