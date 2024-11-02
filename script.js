@@ -174,4 +174,7 @@ function ScreenController() {
     game.playRound(selectedRow, selectedColumn);
     updateScreen();
   });
+
+  // Initial render of the screen
+  updateScreen();
 }
