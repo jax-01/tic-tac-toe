@@ -139,6 +139,7 @@ function ScreenController() {
   const boardDiv = document.querySelector(".board");
 
   const updateScreen = () => {
-    
+    // clear the board
+    boardDiv.textContent = "";
   };
 }
