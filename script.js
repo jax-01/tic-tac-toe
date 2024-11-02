@@ -139,12 +139,27 @@ function ScreenController() {
   const boardDiv = document.querySelector(".board");
 
   const updateScreen = () => {
-    // clear the board
+    // Clear the board
     boardDiv.textContent = "";
 
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
 
     playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
+
+    board.forEach((row, rowIndex) => {
+      row.forEach((cell, cellIndex) => {
+        // Create a button for each cell in the board
+        const cellButton = document.createElement("button");
+        cellButton.classList.add("cell");
+        
+        // Create a data attribute to identify the cell
+        // This makes it easier to pass into 'playRound' function
+        cellButton.dataset.row = rowIndex;
+        cellButton.dataset.column = cellIndex;
+        cellButton.textContent = cell.getCellValue();
+        boardDiv.appendChild(cellButton);
+      });
+    });
   };
 }
