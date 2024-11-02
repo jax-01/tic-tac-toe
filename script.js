@@ -134,7 +134,5 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 ** i.e. updating the screen each time a player takes their turn
 */
 function ScreenController() {
-
+  
 }
-
-const game = GameController();
