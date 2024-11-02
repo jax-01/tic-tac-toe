@@ -128,4 +128,13 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   };
 }
 
+/*
+** The ScreenController will be responsible for
+** updating the visual representation of the game,
+** i.e. updating the screen each time a player takes their turn
+*/
+function ScreenController() {
+
+}
+
 const game = GameController();
