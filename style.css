@@ -54,3 +54,14 @@ body {
   place-items: center;
   min-height: 100vh;
 }
+
+.board {
+  display: grid;
+  width: clamp(240px, 50vw, 500px);
+  height: clamp(240px, 50vw, 500px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 5px;
+  gap: 2.5px;
+  background-color: var(--gameboard-background-color);
+}
