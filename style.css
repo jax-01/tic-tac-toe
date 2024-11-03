@@ -50,4 +50,7 @@ ul {
 
 body {
   background-color: var(--body-background-color);
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
 }
