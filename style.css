@@ -55,6 +55,13 @@ body {
   min-height: 100vh;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .board {
   display: grid;
   width: clamp(240px, 50vw, 500px);
