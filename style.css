@@ -47,3 +47,7 @@ ul {
   --player-one-token-color: #ff914d;
   --player-two-token-color: #77bb5a;
 }
+
+body {
+  background-color: var(--body-background-color);
+}
