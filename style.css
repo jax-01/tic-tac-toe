@@ -33,3 +33,12 @@ ul {
 }
 
 /* CSS Reset rules above */
+
+:root {
+  --body-background-color: #181930;
+  --gameboard-background-color: #bcbfff;
+  --main-text-color: #7e75e5;
+  --sub-text-color: #ffffff;
+  --player-one-token-color: #ff914d;
+  --player-two-token-color: #77bb5a;
+}
