@@ -34,6 +34,11 @@ ul {
 
 /* CSS Reset rules above */
 
+@font-face {
+  font-family: titan-one;
+  src: url(./fonts/titan-one.ttf);
+}
+
 :root {
   --body-background-color: #181930;
   --gameboard-background-color: #bcbfff;
