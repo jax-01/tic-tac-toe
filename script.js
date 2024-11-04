@@ -85,11 +85,11 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   const players = [
     {
       name: playerOneName,
-      token: "X"
+      token: "./images/player-one-token.svg"
     },
     {
       name: playerTwoName,
-      token: "O"  
+      token: "./images/player-two-token.svg"
     }
   ];
 
@@ -158,7 +158,17 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
         // This makes it easier to pass into 'playRound' function
         cellButton.dataset.row = rowIndex;
         cellButton.dataset.column = cellIndex;
-        cellButton.textContent = cell.getCellValue();
+
+        // Get the current value of the cell (empty or O or X)
+        const cellValue = cell.getCellValue();
+        // Check if the cell has a value (O or X)
+        if (cellValue) {
+          const playerTokenImg = document.createElement("img");
+          playerTokenImg.src = cellValue;
+          playerTokenImg.alt = `${activePlayer.name}'s token`;
+          cellButton.appendChild(playerTokenImg);
+        }
+        
         boardDiv.appendChild(cellButton);
       });
     });
