@@ -124,8 +124,58 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
   return {
     playRound,
-    getActivePlayer
+    getActivePlayer,
+    getBoard: gameBoard.getBoard
   };
 }
 
-const game = GameController();
+/*
+** The ScreenController will be responsible for
+** updating the visual representation of the game,
+** i.e. updating the screen each time a player takes their turn
+*/
+(function ScreenController() {
+  const game = GameController();
+  const playerTurnDiv = document.querySelector(".turn");
+  const boardDiv = document.querySelector(".board");
+
+  const updateScreen = () => {
+    // Clear the board
+    boardDiv.textContent = "";
+
+    const board = game.getBoard();
+    const activePlayer = game.getActivePlayer();
+
+    playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
+
+    board.forEach((row, rowIndex) => {
+      row.forEach((cell, cellIndex) => {
+        // Create a button for each cell in the board
+        const cellButton = document.createElement("button");
+        cellButton.classList.add("cell");
+        
+        // Create a data attribute to identify the cell
+        // This makes it easier to pass into 'playRound' function
+        cellButton.dataset.row = rowIndex;
+        cellButton.dataset.column = cellIndex;
+        cellButton.textContent = cell.getCellValue();
+        boardDiv.appendChild(cellButton);
+      });
+    });
+  };
+
+  // add event listener for the board (cells)
+  boardDiv.addEventListener("click", (e) => {
+    const selectedRow = e.target.dataset.row;
+    const selectedColumn = e.target.dataset.column;
+
+    // Make sure buttons are clicked not gaps or spaces
+    if (!selectedRow || !selectedColumn) return;
+
+    game.playRound(selectedRow, selectedColumn);
+    updateScreen();
+  });
+
+  // Initial render of the screen
+  updateScreen();
+}())
