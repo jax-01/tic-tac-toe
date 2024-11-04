@@ -159,9 +159,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
         cellButton.dataset.row = rowIndex;
         cellButton.dataset.column = cellIndex;
 
-        // Get the current value of the cell (empty or O or X)
+        // Get the current value of the cell (empty or player-one-token or player-two-token)
         const cellValue = cell.getCellValue();
-        // Check if the cell has a value (O or X)
+        // Check if the cell has a value (player-one-token or player-two-token)
         if (cellValue) {
           const playerTokenImg = document.createElement("img");
           playerTokenImg.src = cellValue;
