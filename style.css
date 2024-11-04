@@ -41,7 +41,8 @@ ul {
 
 :root {
   --body-background-color: #181930;
-  --gameboard-background-color: #bcbfff;
+  --gameboard-background-color: #7e75e5;
+  --gameboard-cell-background-color: #bcbfff;
   --main-text-color: #7e75e5;
   --sub-text-color: #ffffff;
   --player-one-token-color: #ff914d;
@@ -49,6 +50,7 @@ ul {
 
   --main-text-font-size: clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem);
   --sub-text-font-size: clamp(1rem, 0.34vi + 0.91rem, 1.19rem);
+  --cell-text-font-size: clamp(3.05rem, 3.54vi + 2.17rem, 5rem);
 }
 
 body {
@@ -88,4 +90,10 @@ body {
   padding: 5px;
   gap: 2.5px;
   background-color: var(--gameboard-background-color);
+}
+
+.cell {
+  border: none;
+  font-size: var(--cell-text-font-size);
+  background-color: var(--gameboard-cell-background-color);
 }
