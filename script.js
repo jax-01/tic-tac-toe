@@ -27,7 +27,7 @@ function Gameboard() {
   // the selected cell has no token yet,
   // then change the cell's value to the player's token
   const placeToken = (row, column, playerToken) => {
-    if (board[row][column].getCellValue() !== 0) {
+    if (board[row][column].getCellValue() !== "") {
       console.log("Cell already filled. Place your token again.");
       return false;
     }
@@ -58,7 +58,7 @@ function Gameboard() {
 ** 2: Player 2's token is in the square
 */
 function Cell() {
-  let cellValue = 0;
+  let cellValue = "";
 
   // Accept a player's token to change the value of the cell
   const addToken = (playerToken) => {
