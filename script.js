@@ -149,6 +149,15 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     if (!gameBoard.placeToken(row, column, getActivePlayer().token)) return;
 
+    const result = checkWinner();
+    if (result === "draw") {
+      console.log("Draw!");
+      return; // Stop on draw
+    } else if (result) {
+      console.log(`${getActivePlayer().name} wins!`);
+      return; // Stop on win
+    }
+
     // After a player's turn, switch the players
     switchPlayerTurn();
     // Print the board and the player
