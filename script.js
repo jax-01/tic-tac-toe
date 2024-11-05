@@ -107,11 +107,25 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   };
 
   const checkWinner = () => {
-    const winPatterns = [
+    const board = gameBoard.getBoard();
+
+    const winningPatterns = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Row patterns
       [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Column patterns
       [0, 4, 8], [2, 4, 6]              // Diagonal patterns
     ];
+
+    // Check for the winning patterns
+    for (let pattern of winningPatterns) {
+      const [a, b, c] = pattern;
+      const cellA = board[a].getCellValue();
+      const cellB = board[b].getCellValue();
+      const cellC = board[c].getCellValue();
+
+      if (cellA && cellA === cellB && cellA === cellC) {
+        return cellA; // Return the token of the winner (O or X)
+      }
+    }
   };
 
   const playRound = (row, column) => {
