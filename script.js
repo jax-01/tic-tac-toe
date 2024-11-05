@@ -119,9 +119,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     // Check for the winning patterns
     for (let pattern of winningPatterns) {
       const [a, b, c] = pattern;
-      const cellA = board[a].getCellValue();
-      const cellB = board[b].getCellValue();
-      const cellC = board[c].getCellValue();
+      const cellA = board[a];
+      const cellB = board[b];
+      const cellC = board[c];
 
       if (cellA && cellA === cellB && cellA === cellC) {
         return cellA; // Return the token of the winner (O or X)
@@ -195,7 +195,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     if (result === "draw") {
       playerTurnDiv.textContent = "It's a draw!";
-      boardDiv.removeEventListener("click", handleClick);
+      boardDiv.removeEventListener("click", handleCellClick);
       return;
     } else if (result) {
       playerTurnDiv.textContent = `${activePlayer.name} wins!`;
@@ -231,8 +231,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     });
   };
 
-  // add event listener for the board (cells)
-  boardDiv.addEventListener("click", (e) => {
+  function handleCellClick(e) {
     const selectedRow = e.target.dataset.row;
     const selectedColumn = e.target.dataset.column;
 
@@ -241,7 +240,10 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     game.playRound(selectedRow, selectedColumn);
     updateScreen();
-  });
+  }
+
+  // add event listener for the board (cells)
+  boardDiv.addEventListener("click", handleCellClick);
 
   // Initial render of the screen
   updateScreen();
