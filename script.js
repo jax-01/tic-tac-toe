@@ -111,17 +111,25 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     let fullBoard = true;
 
     const winningPatterns = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Row patterns
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Column patterns
-      [0, 4, 8], [2, 4, 6]              // Diagonal patterns
+      // Row patterns
+      [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }],
+      [{ row: 1, col: 0 }, {row: 1, col: 1 }, { row: 1, col: 2 }],
+      [{ row: 2, col: 0 }, { row: 2, col: 1 }, { row: 2, col: 2 }],
+      // Column patterns
+      [{ row: 0, col: 0 }, { row: 1, col: 0 }, { row: 2, col: 0 }],
+      [{ row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }],
+      [{ row: 0, col: 2 }, { row: 1, col: 2 }, { row: 2, col: 2 }],
+      // Diagonal patterns
+      [{ row: 0, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 2 }],
+      [{ row: 0, col: 2 }, { row: 1, col: 1 }, { row: 2, col: 0 }]
     ];
 
     // Check for the winning patterns
     for (let pattern of winningPatterns) {
       const [a, b, c] = pattern;
-      const cellA = board[a];
-      const cellB = board[b];
-      const cellC = board[c];
+      const cellA = board[a.row][a.col].getCellValue();
+      const cellB = board[b.row][b.col].getCellValue();
+      const cellC = board[c.row][c.col].getCellValue();
 
       if (cellA && cellA === cellB && cellA === cellC) {
         return cellA; // Return the token of the winner (O or X)
