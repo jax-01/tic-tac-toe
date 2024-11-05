@@ -81,6 +81,11 @@ function Cell() {
 */
 function GameController(playerOneName = "Player One", playerTwoName = "Player Two") {
   const gameBoard = Gameboard();
+  const winPatterns = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Row patterns
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Column patterns
+    [0, 4, 8], [2, 4, 6]              // Diagonal patterns
+  ];
 
   const players = [
     {
