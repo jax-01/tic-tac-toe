@@ -170,6 +170,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   return {
     playRound,
     getActivePlayer,
+    checkWinner,
     getBoard: gameBoard.getBoard
   };
 }
@@ -190,6 +191,16 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
+    const result = game.checkWinner();
+
+    if (result === "draw") {
+      playerTurnDiv.textContent = "It's a draw!";
+      boardDiv.removeEventListener("click", handleClick);
+      return;
+    } else if (result) {
+      playerTurnDiv.textContent = `${activePlayer.name} wins!`;
+      return;
+    }
 
     playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
 
