@@ -167,6 +167,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
           playerTokenImg.src = cellValue;
           playerTokenImg.alt = `${activePlayer.name}'s token`;
           cellButton.appendChild(playerTokenImg);
+          cellButton.classList.add("filled");
         }
         
         boardDiv.appendChild(cellButton);

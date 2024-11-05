@@ -42,6 +42,7 @@ ul {
 :root {
   --body-background-color: #181930;
   --gameboard-background-color: #7e75e5;
+  --gameboard-background-color-hover: #aeaafdfe;
   --gameboard-cell-background-color: #bcbfff;
   --main-text-color: #7e75e5;
   --sub-text-color: #ffffff;
@@ -96,4 +97,9 @@ body {
   border: none;
   font-size: var(--cell-text-font-size);
   background-color: var(--gameboard-cell-background-color);
+}
+
+.cell:not(.filled):hover {
+  cursor: pointer;
+  background-color: var(--gameboard-background-color-hover);
 }
