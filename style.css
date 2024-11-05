@@ -103,3 +103,27 @@ body {
   cursor: pointer;
   background-color: var(--gameboard-background-color-hover);
 }
+
+.player-one-winner {
+  border-radius: 0.5rem;
+  width: clamp(150px, 25vw, 300px);
+  text-align: center;
+  font-weight: 500;
+  background-color: var(--player-one-token-color);
+}
+
+.player-two-winner {
+  border-radius: 0.5rem;
+  width: clamp(150px, 25vw, 300px);
+  text-align: center;
+  font-weight: 500;
+  background-color: var(--player-two-token-color);
+}
+
+.draw {
+  border-radius: 0.5rem;
+  width: clamp(150px, 25vw, 300px);
+  text-align: center;
+  font-weight: 500;
+  background-color: var(--gameboard-background-color);
+}
