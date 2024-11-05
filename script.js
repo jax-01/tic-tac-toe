@@ -108,6 +108,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
   const checkWinner = () => {
     const board = gameBoard.getBoard();
+    let fullBoard = true;
 
     const winningPatterns = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Row patterns
@@ -125,6 +126,18 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       if (cellA && cellA === cellB && cellA === cellC) {
         return cellA; // Return the token of the winner (O or X)
       }
+    }
+
+    for (let row of board) {
+      for (cell of row) {
+        if (!cell.getCellValue()) {
+          fullBoard = false;
+        }
+      }
+    }
+
+    if (fullBoard) {
+      return "draw";
     }
   };
 
