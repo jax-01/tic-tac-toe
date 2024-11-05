@@ -139,6 +139,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     if (fullBoard) {
       return "draw";
     }
+
+    return null;
   };
 
   const playRound = (row, column) => {
