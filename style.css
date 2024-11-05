@@ -105,18 +105,24 @@ body {
 }
 
 .player-one-winner {
-  background-color: var(--player-one-token-color);
+  border-radius: 0.5rem;
+  width: clamp(150px, 25vw, 300px);
+  text-align: center;
   font-weight: 500;
+  background-color: var(--player-one-token-color);
 }
 
 .player-two-winner {
-  background-color: var(--player-two-token-color);
+  border-radius: 0.5rem;
+  width: clamp(150px, 25vw, 300px);
+  text-align: center;
   font-weight: 500;
+  background-color: var(--player-two-token-color);
 }
 
 .draw {
   border-radius: 0.5rem;
-  width: clamp(135px, 2vw, 150px);
+  width: clamp(150px, 25vw, 300px);
   text-align: center;
   font-weight: 500;
   background-color: var(--gameboard-background-color);
