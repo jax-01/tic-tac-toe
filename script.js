@@ -204,11 +204,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     if (result === "draw") {
       playerTurnDiv.textContent = "It's a draw!";
       boardDiv.removeEventListener("click", handleCellClick);
-      // return;
     } else if (result) {
       playerTurnDiv.textContent = `${activePlayer.name} wins!`;
       boardDiv.removeEventListener("click", handleCellClick);
-      // return;
     } else {
       playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
     }
@@ -218,6 +216,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
         // Create a button for each cell in the board
         const cellButton = document.createElement("button");
         cellButton.classList.add("cell");
+        cellButton.classList.add("unfilled");
         
         // Create a data attribute to identify the cell
         // This makes it easier to pass into 'playRound' function
@@ -232,12 +231,20 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
           playerTokenImg.src = cellValue;
           playerTokenImg.alt = `${activePlayer.name}'s token`;
           cellButton.appendChild(playerTokenImg);
-          cellButton.classList.add("filled");
+          cellButton.classList.remove("unfilled");
         }
         
         boardDiv.appendChild(cellButton);
       });
     });
+
+    // If game is over, remove hover effect on cell
+    if (result) {
+      const unfilledCells = document.querySelectorAll(".cell.unfilled");
+      unfilledCells.forEach(cell => {
+        cell.classList.remove("unfilled");
+      });
+    }
 
   };
 

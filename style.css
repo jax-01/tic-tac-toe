@@ -99,7 +99,7 @@ body {
   background-color: var(--gameboard-cell-background-color);
 }
 
-.cell:not(.filled):hover {
+.cell.unfilled:hover {
   cursor: pointer;
   background-color: var(--gameboard-background-color-hover);
 }
