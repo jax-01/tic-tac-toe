@@ -103,3 +103,18 @@ body {
   cursor: pointer;
   background-color: var(--gameboard-background-color-hover);
 }
+
+.player-one-winner {
+  background-color: var(--player-one-token-color);
+  font-weight: 500;
+}
+
+.player-two-winner {
+  background-color: var(--player-two-token-color);
+  font-weight: 500;
+}
+
+.draw {
+  background-color: var(--main-text-color);
+  font-weight: 500;
+}
