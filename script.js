@@ -106,12 +106,65 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     console.log(`${getActivePlayer().name}'s turn.`);
   };
 
+  const checkWinner = () => {
+    const board = gameBoard.getBoard();
+    let fullBoard = true;
+
+    const winningPatterns = [
+      // Row patterns
+      [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }],
+      [{ row: 1, col: 0 }, {row: 1, col: 1 }, { row: 1, col: 2 }],
+      [{ row: 2, col: 0 }, { row: 2, col: 1 }, { row: 2, col: 2 }],
+      // Column patterns
+      [{ row: 0, col: 0 }, { row: 1, col: 0 }, { row: 2, col: 0 }],
+      [{ row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }],
+      [{ row: 0, col: 2 }, { row: 1, col: 2 }, { row: 2, col: 2 }],
+      // Diagonal patterns
+      [{ row: 0, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 2 }],
+      [{ row: 0, col: 2 }, { row: 1, col: 1 }, { row: 2, col: 0 }]
+    ];
+
+    // Check for the winning patterns
+    for (let pattern of winningPatterns) {
+      const [a, b, c] = pattern;
+      const cellA = board[a.row][a.col].getCellValue();
+      const cellB = board[b.row][b.col].getCellValue();
+      const cellC = board[c.row][c.col].getCellValue();
+
+      if (cellA && cellA === cellB && cellA === cellC) {
+        return cellA; // Return the token of the winner (O or X)
+      }
+    }
+
+    for (let row of board) {
+      for (cell of row) {
+        if (!cell.getCellValue()) {
+          fullBoard = false;
+        }
+      }
+    }
+
+    if (fullBoard) {
+      return "draw";
+    }
+
+    return null;
+  };
+
   const playRound = (row, column) => {
     // Log who is playing
     console.log(`${getActivePlayer().name} is placing a token`);
 
-    const vacantCell = gameBoard.placeToken(row, column, getActivePlayer().token);
-    if (!vacantCell) return;
+    if (!gameBoard.placeToken(row, column, getActivePlayer().token)) return;
+
+    const result = checkWinner();
+    if (result === "draw") {
+      console.log("Draw!");
+      return; // Stop on draw
+    } else if (result) {
+      console.log(`${getActivePlayer().name} wins!`);
+      return; // Stop on win
+    }
 
     // After a player's turn, switch the players
     switchPlayerTurn();
@@ -125,6 +178,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   return {
     playRound,
     getActivePlayer,
+    checkWinner,
     getBoard: gameBoard.getBoard
   };
 }
@@ -145,14 +199,24 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
+    const result = game.checkWinner();
 
-    playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
+    if (result === "draw") {
+      playerTurnDiv.textContent = "It's a draw!";
+      boardDiv.removeEventListener("click", handleCellClick);
+    } else if (result) {
+      playerTurnDiv.textContent = `${activePlayer.name} wins!`;
+      boardDiv.removeEventListener("click", handleCellClick);
+    } else {
+      playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
+    }
 
     board.forEach((row, rowIndex) => {
       row.forEach((cell, cellIndex) => {
         // Create a button for each cell in the board
         const cellButton = document.createElement("button");
         cellButton.classList.add("cell");
+        cellButton.classList.add("unfilled");
         
         // Create a data attribute to identify the cell
         // This makes it easier to pass into 'playRound' function
@@ -167,16 +231,24 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
           playerTokenImg.src = cellValue;
           playerTokenImg.alt = `${activePlayer.name}'s token`;
           cellButton.appendChild(playerTokenImg);
-          cellButton.classList.add("filled");
+          cellButton.classList.remove("unfilled");
         }
         
         boardDiv.appendChild(cellButton);
       });
     });
+
+    // If game is over, remove hover effect on cell
+    if (result) {
+      const unfilledCells = document.querySelectorAll(".cell.unfilled");
+      unfilledCells.forEach(cell => {
+        cell.classList.remove("unfilled");
+      });
+    }
+
   };
 
-  // add event listener for the board (cells)
-  boardDiv.addEventListener("click", (e) => {
+  function handleCellClick(e) {
     const selectedRow = e.target.dataset.row;
     const selectedColumn = e.target.dataset.column;
 
@@ -185,7 +257,10 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
 
     game.playRound(selectedRow, selectedColumn);
     updateScreen();
-  });
+  }
+
+  // add event listener for the board (cells)
+  boardDiv.addEventListener("click", handleCellClick);
 
   // Initial render of the screen
   updateScreen();
