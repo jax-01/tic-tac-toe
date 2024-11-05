@@ -147,8 +147,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     // Log who is playing
     console.log(`${getActivePlayer().name} is placing a token`);
 
-    const vacantCell = gameBoard.placeToken(row, column, getActivePlayer().token);
-    if (!vacantCell) return;
+    if (!gameBoard.placeToken(row, column, getActivePlayer().token)) return;
 
     // After a player's turn, switch the players
     switchPlayerTurn();
