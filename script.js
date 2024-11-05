@@ -202,9 +202,15 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     const result = game.checkWinner();
 
     if (result === "draw") {
+      playerTurnDiv.classList.add("draw");
       playerTurnDiv.textContent = "It's a draw!";
       boardDiv.removeEventListener("click", handleCellClick);
     } else if (result) {
+      if (activePlayer.token === "./images/player-one-token.svg") {
+        playerTurnDiv.classList.add("player-one-winner");
+      } else {
+        playerTurnDiv.classList.add("player-two-winner");
+      }
       playerTurnDiv.textContent = `${activePlayer.name} wins!`;
       boardDiv.removeEventListener("click", handleCellClick);
     } else {
