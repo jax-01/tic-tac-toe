@@ -115,6 +115,9 @@ body {
 }
 
 .draw {
-  background-color: var(--main-text-color);
+  border-radius: 0.5rem;
+  width: clamp(135px, 2vw, 150px);
+  text-align: center;
   font-weight: 500;
+  background-color: var(--gameboard-background-color);
 }
