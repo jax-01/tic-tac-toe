@@ -204,13 +204,14 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     if (result === "draw") {
       playerTurnDiv.textContent = "It's a draw!";
       boardDiv.removeEventListener("click", handleCellClick);
-      return;
+      // return;
     } else if (result) {
       playerTurnDiv.textContent = `${activePlayer.name} wins!`;
-      return;
+      boardDiv.removeEventListener("click", handleCellClick);
+      // return;
+    } else {
+      playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
     }
-
-    playerTurnDiv.textContent = `${activePlayer.name}'s turn`;
 
     board.forEach((row, rowIndex) => {
       row.forEach((cell, cellIndex) => {
@@ -237,6 +238,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
         boardDiv.appendChild(cellButton);
       });
     });
+
   };
 
   function handleCellClick(e) {
