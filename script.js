@@ -192,6 +192,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   const game = GameController();
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".board");
+  const newGameButton = document.querySelector("#new-game-button");
 
   const updateScreen = () => {
     // Clear the board
@@ -205,7 +206,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       playerTurnDiv.classList.add("draw");
       playerTurnDiv.textContent = "It's a draw!";
       boardDiv.removeEventListener("click", handleCellClick);
+      newGameButton.classList.remove("hidden");
     } else if (result) {
+      newGameButton.classList.remove("hidden");
       if (activePlayer.token === "./images/player-one-token.svg") {
         playerTurnDiv.classList.add("player-one-winner");
       } else {
