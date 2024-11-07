@@ -136,7 +136,7 @@ body {
   border-radius: 0.5rem;
   font-weight: 500;
   color: var(--sub-text-color);
-  width: clamp(100px, 13vw, 170px);
+  width: clamp(110px, 13vw, 170px);
   font-size: var(--sub-text-font-size);
   border: 2px solid var(--gameboard-cell-background-color);
   background-color: var(--gameboard-cell-background-color);
