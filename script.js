@@ -47,7 +47,12 @@ function Gameboard() {
   // This method will fill all elements inside the board array
   // which will reset the entire gameboard
   const reset = () => {
-    board.fill("");
+    for (let i = 0;  i < ROWS; i++) {
+      board[i] = [];
+      for (let j = 0; j < COLUMNS; j++) {
+        board[i].push(Cell());
+      }
+    }
   };
 
   return {
