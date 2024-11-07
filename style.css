@@ -128,15 +128,15 @@ body {
   background-color: var(--gameboard-background-color);
 }
 
-/* .hidden {
+.hidden {
   display: none;
-} */
+}
 
 #new-game-button {
   border-radius: 0.5rem;
   font-weight: 500;
   color: var(--sub-text-color);
-  width: 10vw;
+  width: clamp(100px, 13vw, 170px);
   font-size: var(--sub-text-font-size);
   border: 2px solid var(--gameboard-cell-background-color);
   background-color: var(--gameboard-cell-background-color);
