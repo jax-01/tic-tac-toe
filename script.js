@@ -44,10 +44,17 @@ function Gameboard() {
     );
   };
 
+  // This method will fill all elements inside the board array
+  // which will reset the entire gameboard
+  const reset = () => {
+    board.fill("");
+  };
+
   return {
     getBoard,
     placeToken,
-    printBoard
+    printBoard,
+    reset
   };
 }
 
