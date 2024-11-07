@@ -184,6 +184,11 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     printNewRound();
   };
 
+  const resetGame = () => {
+    gameBoard.reset();
+    activePlayer = players[0]
+  };
+
   // Initial play game message
   printNewRound();
 
@@ -191,7 +196,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     playRound,
     getActivePlayer,
     checkWinner,
-    getBoard: gameBoard.getBoard
+    getBoard: gameBoard.getBoard,
+    resetGame
   };
 }
 
