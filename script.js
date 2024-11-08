@@ -295,6 +295,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     updateScreen();
     // add event listener for the board (cells)
     boardDiv.addEventListener("click", handleCellClick);
+    newGameButton.classList.add("hidden");
   });
 
 
