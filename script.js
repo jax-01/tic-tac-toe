@@ -44,10 +44,22 @@ function Gameboard() {
     );
   };
 
+  // This method will fill all elements inside the board array
+  // which will reset the entire gameboard
+  const reset = () => {
+    for (let i = 0;  i < ROWS; i++) {
+      board[i] = [];
+      for (let j = 0; j < COLUMNS; j++) {
+        board[i].push(Cell());
+      }
+    }
+  };
+
   return {
     getBoard,
     placeToken,
-    printBoard
+    printBoard,
+    reset
   };
 }
 
@@ -172,6 +184,11 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     printNewRound();
   };
 
+  const resetGame = () => {
+    gameBoard.reset();
+    activePlayer = players[0]
+  };
+
   // Initial play game message
   printNewRound();
 
@@ -179,7 +196,8 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     playRound,
     getActivePlayer,
     checkWinner,
-    getBoard: gameBoard.getBoard
+    getBoard: gameBoard.getBoard,
+    resetGame
   };
 }
 
@@ -192,6 +210,7 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
   const game = GameController();
   const playerTurnDiv = document.querySelector(".turn");
   const boardDiv = document.querySelector(".board");
+  const newGameButton = document.querySelector("#new-game-button");
 
   const updateScreen = () => {
     // Clear the board
@@ -205,7 +224,9 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
       playerTurnDiv.classList.add("draw");
       playerTurnDiv.textContent = "It's a draw!";
       boardDiv.removeEventListener("click", handleCellClick);
+      newGameButton.classList.remove("hidden");
     } else if (result) {
+      newGameButton.classList.remove("hidden");
       if (activePlayer.token === "./images/player-one-token.svg") {
         playerTurnDiv.classList.add("player-one-winner");
       } else {
@@ -264,6 +285,19 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     game.playRound(selectedRow, selectedColumn);
     updateScreen();
   }
+
+  newGameButton.addEventListener("click", () => {
+    game.resetGame();
+    playerTurnDiv.classList.remove("player-one-winner");
+    playerTurnDiv.classList.remove("player-two-winner");
+    playerTurnDiv.classList.remove("draw");
+    // console.log(game.getBoard());
+    updateScreen();
+    // add event listener for the board (cells)
+    boardDiv.addEventListener("click", handleCellClick);
+    newGameButton.classList.add("hidden");
+  });
+
 
   // add event listener for the board (cells)
   boardDiv.addEventListener("click", handleCellClick);
