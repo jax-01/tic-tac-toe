@@ -286,6 +286,18 @@ function GameController(playerOneName = "Player One", playerTwoName = "Player Tw
     updateScreen();
   }
 
+  newGameButton.addEventListener("click", () => {
+    game.resetGame();
+    playerTurnDiv.classList.remove("player-one-winner");
+    playerTurnDiv.classList.remove("player-two-winner");
+    playerTurnDiv.classList.remove("draw");
+    // console.log(game.getBoard());
+    updateScreen();
+    // add event listener for the board (cells)
+    boardDiv.addEventListener("click", handleCellClick);
+  });
+
+
   // add event listener for the board (cells)
   boardDiv.addEventListener("click", handleCellClick);
 
